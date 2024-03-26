@@ -1,0 +1,246 @@
+body{
+    font-family: 'Trebuchet MS', sans-serif;
+    margin: 0;
+    background-color: rgb(25, 25, 25);
+    color: #FAF0E6;
+}
+
+.row{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.sidebar{
+    background-color: rgb(20, 20, 20);
+    box-shadow: 0px 5px 10px rgb(10, 10, 10);
+    width: 260px;
+    padding: 10px;
+    min-height: 100%;
+}
+
+input, textarea{
+    width: calc(100% - 20px);
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid rgb(50, 50, 50);
+    background-color: rgb(30, 30, 30);
+    padding: 1px 10px;
+    color: #FAF0E6;
+    font-size: 16px;
+}
+
+input:focus, textarea:focus{
+    outline: 1px solid #357ae8;
+    border: 1px solid rgb(30, 30, 30);
+}
+
+main{
+    position: relative;
+    overflow: auto;
+    flex: 1;
+    padding: 15px;
+    display: flex;
+}
+
+hr{
+    border: .5px solid rgb(100, 100, 100);
+}
+
+.sidebar ul{
+    padding: 0;
+    margin-top: 15px;
+}
+
+.btn{
+    list-style: none;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+    border-radius: 4px;
+    color: rgb(20, 20, 20);
+    font-size: 14px;
+    transition: .2s;
+    color: #FAF0E6;
+    border: 1.5px solid;
+}
+
+.btn:hover{
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+    color: #357ae8;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.textarea{
+    position: relative;
+    min-height: calc(100% - 30px);
+    width: 100%;
+    background-color: rgb(35, 35, 35);
+    border-radius: 15px;
+    padding: 15px 25px;
+    box-shadow: 0px 0px 8px rgb(15, 15, 15);
+}
+
+.textarea > h1::after, 
+.textarea > h2::after, 
+.textarea > h3::after, 
+.textarea > h4::after, 
+.textarea > h5::after, 
+.textarea > h6::after{
+    content: "";
+    display: block;
+    border-bottom: 1px solid rgb(100, 100, 100);
+    margin: 5px 0 0 0;
+}
+
+.textarea > ul li{
+    list-style-type: square;
+}
+
+.centered{
+    position: absolute;
+    top: 10px;
+    left: 70px;
+    right: 70px;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered h1{
+    padding: 0;
+    margin: 5px;
+    font-size: 130px;
+    font-weight: 100;
+}
+
+.centered h3{
+    padding: 0;
+    margin: 10px;
+    font-size: 30px;
+    font-weight: 100;
+    color: #357ae8;
+}
+
+.centered p{
+    padding: 0;
+    margin: 10px 10px 100px 10px;
+    text-align: center;
+    font-weight: 100;
+}
+
+.entries{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.entries a{
+    height: 40px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    transition: .2s;
+    background-color: rgb(25, 25, 25);
+    border: 1px solid rgb(20, 20, 20);
+    border-bottom: .5px solid rgb(50, 50, 50);
+    border-top: .5px solid rgb(50, 50, 50);
+}
+
+.entries a:hover{
+    text-decoration: none;
+    background-color: rgb(45, 45, 45);
+}
+
+.entries a:first-child{
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    border-top: 1px solid rgb(20, 20, 20);
+}
+
+.entries a:last-child{
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom: 1px solid rgb(20, 20, 20);
+}
+
+i{
+    margin-left: 5px;
+}
+
+.options{
+    display: flex;
+    justify-content: space-between;
+}
+
+.blue{
+    background-color: #357ae8;
+    border-color: #2f5bb7;
+}
+
+.blue:hover{
+    background-color: #2d5bb7;
+}
+
+.red{
+    background-color: #ab2e2e;
+    border-color:  #8d0808;
+}
+
+.red:hover{
+    background-color: #8d0808
+}
+
+.new_entry{
+    display: flex;
+    flex-direction: column;
+    height: 85%;
+}
+
+.new_entry textarea{
+    flex: 1;
+}
+
+.new_entry textarea, .new_entry input{
+    margin: 4px 0;
+}
+
+.btn-box{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+textarea{
+    resize: none;
+    padding: 5px 10px;
+}
+
+@media screen and (max-width: 999px){
+    .sidebar{
+        width: calc(100% - 20px);
+        height: auto;
+    }
+
+    .row{
+        flex-direction: column;
+    }
+
+    .textarea{
+        min-height: 100%;
+    }
+}

@@ -1,0 +1,16 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>Search Result</h1>
+    <div class="entries">
+        {% for entry in search_result %}
+            <a href="wiki/{{ entry }}"><span style="color: #FAF0E6; margin-right: 7px;">{{ forloop.counter }}.</span> {{ entry }}</a>
+        {% empty %}
+            <h3>No Results Found</h3>
+        {% endfor %}
+    </div>
+{% endblock %}

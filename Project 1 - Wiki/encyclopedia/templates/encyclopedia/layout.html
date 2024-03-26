@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="row">
+            <div class="sidebar">
+                <h1>CS50W Wiki <i class='bx bx-globe' style="margin: 0;"></i></h1>
+                <hr>
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="search_query" placeholder="Search">
+                </form>
+                <hr>
+                <ul>
+                    <a href="{% url 'index' %}" class="btn blue"><li>Home<i class='bx bx-home' ></i></li></a>
+                    <a href="{% url 'create' %}" class="btn blue"><li>Create New Page<i class='bx bx-folder-plus' ></i></li></a>
+                    <a href="{% url 'random' %}" class="btn blue"><li>Random Page<i class='bx bx-shuffle' ></i></i></li></a>
+                </ul>
+            </div>
+            <main class="main">
+                <div class="textarea">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

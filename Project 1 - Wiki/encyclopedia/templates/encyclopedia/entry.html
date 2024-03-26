@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if entry %}
+        {{ title }} Wiki 
+    {% else %}
+        Error
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if entry %}
+        <div class="options">
+            <a href="{% url 'edit' title %}" class="btn blue" style="width: 120px; cursor: pointer; margin-top: 25px;">Edit <i class='bx bx-edit-alt'></i></a>
+            <a href="{% url 'delete_entry' title %}" class="btn red" style="width: 120px; cursor: pointer; margin-top: 25px;">Delete <i class='bx bx-trash'></i></a>
+        </div>
+        <hr style="border-color: rgb(170, 170, 170);">
+        {{ entry|safe }}
+    {% else %}
+        <h1>No Entry Found</h1>
+    {% endif %}
+{% endblock %}

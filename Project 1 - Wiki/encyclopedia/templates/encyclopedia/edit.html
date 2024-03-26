@@ -1,0 +1,25 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {% if entry %}
+        {{ title }} - Edit
+    {% else %}
+        Error
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if entry %}
+        <h1>{{ title }} - Edit</h1>
+        <form action="{% url 'edit' title %}" class="new_entry" method="post">
+            {% csrf_token %}
+            <textarea name="content" placeholder="Content" required="required">{{ entry }}</textarea>
+            <div class="btn-box">
+                <input type="submit" class="blue btn" value="Save" style="width: 120px; height: 28px; cursor: pointer;">
+                <a href="{% url 'entry' title %}" class="red btn" style="width: 120px; cursor: pointer;">Cancel</a>
+            </div>
+        </form>
+    {% else %}
+        <h1>No Entry Found</h1>
+    {% endif %}
+{% endblock %}

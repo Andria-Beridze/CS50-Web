@@ -1,0 +1,13 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <div class="centered">
+        <h1>404</h1>
+        <h3>OOPS! NOTHING WAS FOUND</h3>
+        <p>The page you are looking for might have been removed, had its name changed, or is  temporarily unavailable. <a href="{% url 'index' %}">Return to home page</a></p>
+    </div>
+{% endblock %}

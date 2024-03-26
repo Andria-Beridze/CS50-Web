@@ -1,0 +1,14 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>All Entries</h1>
+    <div class="entries">
+        {% for entry in entries %}
+            <a href="wiki/{{ entry }}"><span style="color: #FAF0E6; margin-right: 7px;">{{ forloop.counter }}.</span> {{ entry }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
