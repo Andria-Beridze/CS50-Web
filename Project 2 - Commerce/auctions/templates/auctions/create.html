@@ -1,0 +1,32 @@
+{% extends "auctions/layout.html" %}
+
+{% block heading %}
+{% if user.is_authenticated%}
+Create Listing
+<hr>
+{% else %}
+Please <a href="{% url 'login' %}">Login</a> to Continue
+<hr>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<form action="{% url 'create' %}" class="create-form" method="post" required>
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="text" placeholder="Title" name="title" required>
+        <textarea placeholder="Description" name="description" maxlength="2048" required></textarea>
+        <input type="number" placeholder="Price" name="price" step=".01" required>
+        <input type="text" placeholder="Image URL (Optional)" name="url">
+        <label for="title">Select One or Many Categories (Hold Ctrl/Cmd to select multiple)</label>
+        <select name="categories" multiple>
+            {% for category in categories %}
+            <option>{{ category.category }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <input type="submit" class="btn" value="Save">
+</form>
+{% endif %}
+{% endblock %}

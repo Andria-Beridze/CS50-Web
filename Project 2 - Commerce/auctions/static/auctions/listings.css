@@ -1,0 +1,120 @@
+.listing{
+    width: calc(100% - 30px);
+    height: 250px;
+    background-color: rgb(20, 20, 20);
+    border: 1px solid rgb(60, 60, 60);
+    position: relative;
+    padding: 15px;
+    display: flex;
+    gap: 30px;
+    margin: 10px 0;
+}
+
+.listing-image{
+    height: calc(100% - 20px);
+    width: calc(33% - 20px);
+    background-color: rgb(40, 40, 40);
+    border: 1px solid rgb(50, 50, 50);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+}
+
+.listing-image img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.listing .about-listing{
+    flex: 1;
+    cursor: default;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.about-listing h2{
+    margin: 0px;
+}
+
+.about-listing p span{
+    color: rgb(145, 145, 145);
+}
+
+.about-listing .btn-box{
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+}
+
+.about-listing p{
+    margin: 13px 0px;
+}
+
+.btn-box{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin-bottom: 21.5px;
+}
+
+
+.listing-details{
+    background-color: rgb(15, 15, 15);
+    height: auto;
+    width: calc(100% - 40px);
+    border: 1px solid rgb(50, 50, 50);
+    padding: 20px;
+}
+
+.place-bid{
+    background-color: rgb(20, 20, 20);
+    padding: 20px;
+    border: 1px solid rgb(60, 60, 60);
+    width: calc(100% - 40px);
+}
+
+.place-bid h2{
+    margin: 0;
+}
+
+.place-bid p{
+    margin: 13px 0;
+}
+
+.place-bid a{
+    color: #1DB954;
+    text-decoration: none;
+}
+
+.place-bid a:hover{
+    text-decoration: underline;
+}
+
+.about-comment{
+    background-color: rgb(30, 30, 30);
+    border: 1px solid rgb(41, 41, 41);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-comment hr{
+    width: 100%;
+    margin: 0;
+    border: .25px solid rgb(100, 100, 100);
+    margin-bottom: 10px;
+}

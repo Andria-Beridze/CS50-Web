@@ -1,0 +1,41 @@
+{% extends "auctions/layout.html" %}
+
+{% block heading %}
+{{ name }}
+<hr>
+{% endblock %}
+
+{% block body %}
+{% for listing in listings %}
+<div class="listing">
+    <div class="listing-image">
+        <img src="{{ listing.image_url }}" alt="{{ listing }}">
+    </div>
+    <div class="about-listing">
+        <h2>{{ listing.title }}</h2>
+        <p>{{ listing.description }}</p>
+        <p><strong>Listed By: </strong><span>{{ listing.user.username }} on {{ listing.date }}</span></p>
+        <p><strong>Price:</strong> <span>${{ listing.price }}</span></p>
+        <p><strong>Categories:</strong>
+            <span>
+                {% for category in listing.category.all %}
+
+                {% if not forloop.last %}
+                {{ category }},
+                {% else %}
+                {{ category }}
+                {% endif %}
+                {% empty %}
+                No Categories Listed
+                {% endfor %}
+            </span>
+        </p>
+        <div class="btn-box">
+            <a href="{% url 'listing' listing.id %}" class="btn">Go to Listing's Page</a>
+        </div>
+    </div>
+</div>
+{% empty %}
+    <div class="bid-message warning">There are no active listings under this category</div>
+{% endfor %}
+{% endblock %}

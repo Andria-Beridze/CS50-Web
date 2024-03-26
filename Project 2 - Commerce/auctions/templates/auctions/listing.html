@@ -1,0 +1,134 @@
+{% extends "auctions/layout.html" %}
+
+{% block heading %}
+{{ listing.title }}
+<hr>
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<div class="btn-box">
+    {% if isUnderWatchlist %}
+    <a href="{% url 'toggle_watchlist' listing.id %}" class="btn">Stop Watching</a>
+    {% else %}
+    <a href="{% url 'toggle_watchlist' listing.id %}" class="btn">Add to Watchlist</a>
+    {% endif %}
+    {% if user == listing.user and listing.active %}
+    <a href="{% url 'close' listing.id %}" class="btn">Close Listing</a>
+    {% endif %}
+</div>
+{% endif %}
+<div class="listing-details">
+    {% if not listing.active and listing.winner == user %}
+    <div class="bid-message success">
+        <strong>Success!</strong> You have won the auction for the {{ listing.title }}!
+    </div>
+    {% endif %}
+    <div class="listing">
+        <div class="listing-image">
+            <img src="{{ listing.image_url }}" alt="{{ listing }}">
+        </div>
+        <div class="about-listing">
+            <h2>{{ listing.title }}</h2>
+            <p>{{ listing.description }}</p>
+            <p><strong>Listed By: </strong><span>{{ listing.user.username }} on {{ listing.date }}</span></p>
+            <p><strong>Current price:</strong> <span>${{ listing.price }}</span></p>
+            <p><strong>Categories:</strong>
+                <span>
+                    {% for category in listing.category.all %}
+                    {% if not forloop.last %}
+                    {{ category }},
+                    {% else %}
+                    {{ category }}
+                    {% endif %}
+                    {% empty %}
+                    No Categories Listed
+                    {% endfor %}
+                </span>
+            </p>
+            {% if not listing.active %}
+            <p><strong>Winner: </strong><span>{{ listing.winner }}</span></p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="place-bid">
+        <h2>Bid</h2>
+        <p>There are currently {{ bid_count }} bid(s).</p>
+        {% if message %}
+        {% if success %}
+        <div class="bid-message success">
+            {{ message }}
+        </div>
+        {% else %}
+        <div class="bid-message error">
+            {{ message }}
+        </div>
+        {% endif %}
+        {% endif %}
+        {% if not listing.active %}
+        <div class="bid-message warning">
+            Listing Closed. Feel free to explore other available listings for bidding.
+        </div>
+        {% else %}
+        {% if user.is_authenticated %}
+        <form action="{% url 'listing' listing.id %}" method="post" class="bid-form">
+            {% csrf_token %}
+            <input type="number" step=".01" placeholder="Enter Your Bid" name="bid_value">
+            <input type="submit" value="Place Your Bid" class="btn">
+        </form>
+        {% else %}
+        <div class="bid-message info">
+            Please login to place a bid
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+<div class="comments-section">
+    <div class="heading">
+        <h2>
+            Comments
+            <hr>
+        </h2>
+    </div>
+    {% if comments|length == 0 %}
+    <div class="bid-message info">
+        No Comments to Display
+    </div>
+    {% else %}
+    {% for comment in comments %}
+    <div class="about-comment">
+        <div class="about">
+            <div class="user">
+                {{ comment.user }}
+            </div>
+            <div class="date">
+                {{ comment.comment_date }}
+            </div>
+        </div>
+        <hr>
+        <div class="comment">
+            {{ comment.comment }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="heading">
+        <h2>
+            Leave a Comment
+            <hr>
+        </h2>
+    </div>
+    {% if not user.is_authenticated %}
+    <div class="bid-message info">
+        Please login to leave a comment
+    </div>
+    {% else %}
+    <form action="{% url 'comment' listing.id %}" class="comment-form" method="post">
+        {% csrf_token %}
+        <textarea name="comment" placeholder="Comment"></textarea>
+        <input type="submit" class="btn" value="Post" style="width: 200px;">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

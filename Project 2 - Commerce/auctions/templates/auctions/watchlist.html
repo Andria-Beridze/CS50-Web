@@ -1,0 +1,48 @@
+{% extends "auctions/layout.html" %}
+
+{% block heading %}
+Watchlist
+<hr>
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+{% for watchlist in list %}
+<div class="listing">
+    <div class="listing-image">
+        <img src="{{ watchlist.listing.image_url }}" alt="{{ watchlist.listing }}">
+    </div>
+    <div class="about-listing">
+        <h2>{{ watchlist.listing.title }}</h2>
+        <p>{{ watchlist.listing.description }}</p>
+        <p><strong>Listed By: </strong><span>{{ watchlist.listing.user.username }} on {{ watchlist.listing.date }}</span></p>
+        <p><strong>Price:</strong> <span>${{ watchlist.listing.price }}</span></p>
+        <p><strong>Categories:</strong>
+            <span>
+                {% for category in watchlist.listing.category.all %}
+
+                {% if not forloop.last %}
+                {{ category }},
+                {% else %}
+                {{ category }}
+                {% endif %}
+                {% empty %}
+                No Categories Listed
+                {% endfor %}
+            </span>
+        </p>
+        {% if not listing.active %}
+        <p><strong>Winner: </strong><span>{{ watchlist.listing.winner }}</span></p>
+        {% endif %}
+        <div class="btn-box">
+            <a href="{% url 'listing' watchlist.listing.id %}" class="btn">Go to Listing's Page</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="bid-message error">
+    Please login to see the watchlist
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}Auctions{% endblock %}</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <div class="logo">
+                <h2>CS50W Auctions <i class='bx bx-dollar-circle'></i></h2>
+            </div>
+            <div class="user-auth">
+                {% if user.is_authenticated %}
+                <div>Hello, <span>{{ user.username }}</span></div>
+                <a href="{% url 'logout' %}" class="btn">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn">Login</a>
+                <a href="{% url 'register' %}" class="btn">Register</a>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+        <div class="navbar">
+            <ul class="nav-menu">
+                <li><a href="{% url 'index' %}"><i class='bx bx-list-check'></i> Active Listings</a></li>
+                <li><a href="{% url 'closed_listings' %}"><i class='bx bx-lock-alt'></i> Closed Listings</a></li>
+                <li><a href="{% url 'categories' %}"><i class='bx bx-category-alt'></i> Categories</a></li>
+                {% if user.is_authenticated %}
+                {% if watchlist_count == 0 %}
+                <li><a href="{% url 'watchlist' %}"><i class='bx bx-bookmark-heart'></i> Watchlist</a></li>
+                {% else %}
+                <li><a href="{% url 'watchlist' %}"><i class='bx bx-bookmark-heart'></i> Watchlist <div
+                            class="watchlist_count secondary">{{ watchlist_count }}</div></a></li>
+                {% endif %}
+                <li><a href="{% url 'create' %}"><i class='bx bx-folder-plus'></i> Create Listing</a></li>
+                {% else %}
+                <li class="disabled"><a href="{% url 'watchlist' %}"><i class='bx bx-bookmark-heart'></i> Watchlist</a>
+                </li>
+                <li class="disabled"><a href="{% url 'create' %}"><i class='bx bx-folder-plus'></i> Create Listing</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+    <div class="heading">
+        <h1>
+            {% block heading %}
+            {% endblock %}
+        </h1>
+    </div>
+    {% block body %}
+    {% endblock %}
+</body>
+
+</html>
