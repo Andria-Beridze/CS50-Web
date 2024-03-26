@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <header>
+            <img src="google-search.png" alt="Google Icon">
+            <ul class="links">
+                <li><a href="index.html">Back to Search</a></li>
+            </ul>
+        </header>
+        <div class="title">Advanced Search</div>
+        <hr>
+        <form action="https://google.com/search" class="advanced-search">
+            <table>
+                <tr>
+                    <td>Find pages with...</td>
+                    <td></td>
+                    <td>To do this in the search box</td>
+                </tr>
+                <tr>
+                    <td>all these words:</td>
+                    <td><input type="text" name="as_q"></td>
+                    <td>Type the important words:  tricolor rat terrier</td>
+                </tr>
+                <tr>
+                    <td>this exact word or phrase:</td>
+                    <td><input type="text" name="as_epq"></td>
+                    <td>Put exact words in quotes:  "rat terrier"</td>
+                </tr>
+                <tr>
+                    <td>any of these words:</td>
+                    <td><input type="text" name="as_oq"></td>
+                    <td>Type OR between all the words you want:  miniature OR standard</td>
+                </tr>
+                <tr>
+                    <td>none of these words:</td>
+                    <td><input type="text" name="as_eq"></td>
+                    <td>Put a minus sign just before words you don't want:  -rodent, -"Jack Russell"</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Advanced Search"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
